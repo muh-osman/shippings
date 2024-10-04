@@ -207,6 +207,7 @@ export default function AddClient() {
               label="Number Of Items"
               type="number"
               name="numberOfItems"
+              defaultValue={1}
               required
               disabled={isPending}
               inputProps={{ min: 0 }}

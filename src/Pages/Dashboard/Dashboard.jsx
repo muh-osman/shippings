@@ -209,11 +209,15 @@ export default function Dashboard() {
   };
 
   const uploadAll = () => {
-    let confirmUpload = window.confirm(
-      "Are you sure you want to upload all clients?"
-    );
-    if (confirmUpload) {
-      mutateBulkCreateOrdres();
+    if (AllClients?.length === 0 || AllClients === undefined) {
+      toast.warn("No clients found.");
+    } else {
+      let confirmUpload = window.confirm(
+        "Are you sure you want to upload all clients?"
+      );
+      if (confirmUpload) {
+        mutateBulkCreateOrdres();
+      }
     }
   };
 

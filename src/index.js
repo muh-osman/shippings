@@ -30,7 +30,7 @@ const qc = new QueryClient({
 const defaultTheme = createTheme({
   palette: {
     primary: {
-      main: "#7431fa",
+      main: "#4FBA57",
     },
     // ... other colors
   },

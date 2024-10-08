@@ -122,7 +122,7 @@ const columns = [
     field: "designation",
     headerName: "Designation",
     flex: 1,
-    minWidth: 125,
+    minWidth: 200,
     sortable: false,
     headerAlign: "center",
     align: "center",
@@ -131,7 +131,7 @@ const columns = [
     field: "comment",
     headerName: "Comment",
     flex: 1,
-    minWidth: 100,
+    minWidth: 200,
     sortable: false,
     headerAlign: "center",
     align: "center",
@@ -143,38 +143,38 @@ const columns = [
       );
     },
   },
-  {
-    field: "item",
-    headerName: "Item",
-    flex: 1,
-    minWidth: 100,
-    sortable: false,
-    headerAlign: "center",
-    align: "center",
-    renderCell: (params) => {
-      return params.value ? (
-        params.value
-      ) : (
-        <div style={{ color: "#757575" }}>N/A</div>
-      );
-    },
-  },
-  {
-    field: "numberOfExchanges",
-    headerName: "Number Of Exchanges",
-    flex: 1,
-    minWidth: 175,
-    sortable: false,
-    headerAlign: "center",
-    align: "center",
-    renderCell: (params) => {
-      return params.value ? (
-        params.value
-      ) : (
-        <div style={{ color: "#757575" }}>N/A</div>
-      );
-    },
-  },
+  // {
+  //   field: "item",
+  //   headerName: "Item",
+  //   flex: 1,
+  //   minWidth: 200,
+  //   sortable: false,
+  //   headerAlign: "center",
+  //   align: "center",
+  //   renderCell: (params) => {
+  //     return params.value ? (
+  //       params.value
+  //     ) : (
+  //       <div style={{ color: "#757575" }}>N/A</div>
+  //     );
+  //   },
+  // },
+  // {
+  //   field: "numberOfExchanges",
+  //   headerName: "Number Of Exchanges",
+  //   flex: 1,
+  //   minWidth: 175,
+  //   sortable: false,
+  //   headerAlign: "center",
+  //   align: "center",
+  //   renderCell: (params) => {
+  //     return params.value ? (
+  //       params.value
+  //     ) : (
+  //       <div style={{ color: "#757575" }}>N/A</div>
+  //     );
+  //   },
+  // },
 ];
 
 export default function Uploaded() {

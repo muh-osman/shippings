@@ -102,6 +102,10 @@ export default function EditClient() {
     const telephone = formData.get("telephone");
     const telephone2 = formData.get("telephone2");
 
+    // Append Designation to formData with key 'item'
+    let Designation = formData.get("designation");
+    formData.append("item", Designation);
+
     // Regular expression to check for letters
     const hasLetters = /[a-zA-Z]/;
 
@@ -279,24 +283,35 @@ export default function EditClient() {
               value={clientData.numberOfItems}
               onChange={handleInputChange}
               disabled={isPending || isFetchCientPending}
-              inputProps={{ min: 0 }}
+              inputProps={{ min: 1 }}
             />
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <TextField
+              sx={{ backgroundColor: "#fff" }}
               fullWidth
               label="Designation"
-              type="text"
               name="designation"
+              select
               required
               value={clientData.designation}
               onChange={handleInputChange}
               disabled={isPending || isFetchCientPending}
-            />
+            >
+              <MenuItem value={"Tisane Anti Constipation F"}>
+                Tisane Anti Constipation F
+              </MenuItem>
+              <MenuItem value={"Tisane Anti Constipation N"}>
+                Tisane Anti Constipation N
+              </MenuItem>
+              <MenuItem value={"Tisane Anti Constipation Z"}>
+                Tisane Anti Constipation Z
+              </MenuItem>
+            </TextField>
           </Grid>
 
-          <Grid item xs={6}>
+          {/* <Grid item xs={6}>
             <TextField
               fullWidth
               label="Item"
@@ -307,9 +322,9 @@ export default function EditClient() {
               onChange={handleInputChange}
               disabled={isPending || isFetchCientPending}
             />
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={6}>
+          {/* <Grid item xs={6}>
             <TextField
               fullWidth
               label="Number Of Exchanges (optional)"
@@ -320,9 +335,9 @@ export default function EditClient() {
               disabled={isPending || isFetchCientPending}
               inputProps={{ min: 0 }}
             />
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <TextField
               fullWidth
               label="Comment (optional)"
@@ -342,7 +357,7 @@ export default function EditClient() {
           disableRipple
           disabled={isFetchCientPending}
           loading={isPending}
-          sx={{ mt: 3, mb: 2, transition: "0.1s" }}
+          sx={{ mt: 3, mb: 2, transition: "0.1s", color: "#fff" }}
         >
           Edit
         </LoadingButton>

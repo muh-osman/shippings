@@ -168,11 +168,11 @@ function ResponsiveDrawer(props) {
               } // Customize the loader color here
               sx={{
                 backgroundColor: "#fbfbfb",
-                color: "#7431fa",
+                color: "#4FBA57",
                 border: "1px solid #fbfbfb",
                 transition: "0.1s",
                 "&:hover": {
-                  backgroundColor: "#7431fa",
+                  backgroundColor: "#4FBA57",
                   color: "#fbfbfb",
                 },
               }}

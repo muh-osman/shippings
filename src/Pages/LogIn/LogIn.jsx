@@ -17,7 +17,7 @@ import Copyright from "../../Components/Copyright";
 // API
 import { useLoginApi } from "../../API/useLoginApi";
 // img
-import bg from "../../Assets/Images/bg.jpg"
+import bg from "../../Assets/Images/bg.jpg";
 
 export default function LogIn() {
   const formRef = React.useRef();
@@ -110,7 +110,7 @@ export default function LogIn() {
               variant="contained"
               disableRipple
               loading={isPending}
-              sx={{ mt: 3, mb: 2, transition: "0.1s" }}
+              sx={{ mt: 3, mb: 2, transition: "0.1s", color: "#fff" }}
             >
               Log in
             </LoadingButton>

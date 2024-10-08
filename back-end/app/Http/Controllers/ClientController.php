@@ -144,7 +144,7 @@ class ClientController extends Controller
 
         // Send each chunk to the API
         foreach ($chunks as $chunk) {
-            $response = Http::withToken('6095af8d-76c8-4467-aa8f-b7478f46b3e5')
+            $response = Http::withToken('dce92a94-c4b9-4655-8716-7265b54cfe93')
                 ->post('https://www.firstdeliverygroup.com/api/v2/bulk-create', $chunk);
 
             // Check if the response indicates an error

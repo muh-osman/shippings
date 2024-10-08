@@ -16,7 +16,7 @@ export default function Copyright(props) {
         color="inherit"
         component={RouterLink}
         to="/"
-        onMouseOver={(e) => (e.target.style.color = "#7431fa")}
+        onMouseOver={(e) => (e.target.style.color = "#4FBA57")}
         onMouseOut={(e) => (e.target.style.color = "inherit")}
       >
         First Delivery

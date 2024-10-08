@@ -61,6 +61,10 @@ export default function AddClient() {
     const telephone = formData.get("telephone");
     const telephone2 = formData.get("telephone2");
 
+    // Append Designation to formData with key 'item'
+    let Designation = formData.get("designation");
+    formData.append("item", Designation);
+
     // Regular expression to check for letters
     const hasLetters = /[a-zA-Z]/;
 
@@ -210,22 +214,39 @@ export default function AddClient() {
               defaultValue={1}
               required
               disabled={isPending}
-              inputProps={{ min: 0 }}
+              inputProps={{ min: 1 }}
             />
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <TextField
+              sx={{ backgroundColor: "#fff" }}
+              select
               fullWidth
-              label="Designation"
-              type="text"
-              name="designation"
               required
+              label="Designation"
+              name="designation"
+              defaultValue={""}
               disabled={isPending}
-            />
+              SelectProps={{
+                MenuProps: {
+                  disableScrollLock: true,
+                },
+              }}
+            >
+              <MenuItem value={"Tisane Anti Constipation F"}>
+                Tisane Anti Constipation F
+              </MenuItem>
+              <MenuItem value={"Tisane Anti Constipation N"}>
+                Tisane Anti Constipation N
+              </MenuItem>
+              <MenuItem value={"Tisane Anti Constipation Z"}>
+                Tisane Anti Constipation Z
+              </MenuItem>
+            </TextField>
           </Grid>
 
-          <Grid item xs={6}>
+          {/* <Grid item xs={6}>
             <TextField
               fullWidth
               label="Item"
@@ -234,9 +255,9 @@ export default function AddClient() {
               required
               disabled={isPending}
             />
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={6}>
+          {/* <Grid item xs={6}>
             <TextField
               fullWidth
               label="Number Of Exchanges (optional)"
@@ -245,9 +266,9 @@ export default function AddClient() {
               disabled={isPending}
               inputProps={{ min: 0 }}
             />
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <TextField
               fullWidth
               label="Comment (optional)"
@@ -264,7 +285,7 @@ export default function AddClient() {
           variant="contained"
           disableRipple
           loading={isPending}
-          sx={{ mt: 3, mb: 2, transition: "0.1s" }}
+          sx={{ mt: 3, mb: 2, transition: "0.1s", color: "#fff" }}
         >
           Add
         </LoadingButton>

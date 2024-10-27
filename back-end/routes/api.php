@@ -48,6 +48,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/uploaded-clients', [UploadedController::class, 'index']); // Get all uploaded clients
 
     Route::post('/check-status-client', [UploadedController::class, 'checkClientStatus']);
+
+    Route::get('/all-clients-phone-number', [UploadedController::class, 'getAllPhoneNumbers']);
+
+    Route::get('/show-one-order-details/{id}', [UploadedController::class, 'show']);
 });
 
 

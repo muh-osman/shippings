@@ -95,7 +95,7 @@ export default function SignUp() {
             variant="contained"
             disableRipple
             loading={isPending}
-            sx={{ mt: 3, mb: 2, transition: "0.1s" }}
+            sx={{ mt: 3, mb: 2, transition: "0.1s", color: "#fff" }}
           >
             Sign Up
           </LoadingButton>

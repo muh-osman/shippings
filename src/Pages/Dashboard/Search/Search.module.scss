@@ -1,5 +1,9 @@
 .container {
-  min-height: calc(100vh - 112px);
+  min-height: calc(100vh - 144px);
+
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
 
   & * {
     font-family: "Cairo", sans-serif !important;
@@ -19,7 +23,7 @@
 
 @media (max-width: 600px) {
   .container {
-    min-height: calc(100vh - 104px);
+    min-height: calc(100vh - 136px);
   }
 
   .progressContainer {
@@ -27,16 +31,6 @@
   }
 }
 
-// Responsive table
-.datagrid_container {
-  height: calc(100vh - 178px);
-
-  @media (max-width: 600px) {
-    height: calc(100vh - 345px);
-  }
-}
-
-.repeatedPhone {
-  background-color: #ef5350 !important;
-  color: #fff !important;
+.inputRoot {
+  padding-right: 14px !important;
 }

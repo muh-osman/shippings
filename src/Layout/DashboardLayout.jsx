@@ -22,6 +22,7 @@ import logo from "../Assets/Images/logo.png";
 // MUI icons
 import PauseCircleFilledIcon from "@mui/icons-material/PauseCircleFilled";
 import CloudDoneIcon from "@mui/icons-material/CloudDone";
+import SearchIcon from "@mui/icons-material/Search";
 // React router
 import { Link, useLocation, Outlet } from "react-router-dom";
 // Cookies
@@ -50,6 +51,12 @@ function ResponsiveDrawer(props) {
       title: "Uploaded",
       path: "/dashboard/uploaded",
       icon: <CloudDoneIcon sx={{ color: "#757575" }} />,
+    },
+    {
+      id: 3,
+      title: "Search",
+      path: "/dashboard/search",
+      icon: <SearchIcon sx={{ color: "#757575" }} />,
     },
   ];
 

@@ -24,6 +24,7 @@ const columns = [
     sortable: false,
     headerAlign: "center",
     align: "center",
+    sortable: true,
   },
   {
     field: "name",
@@ -33,6 +34,7 @@ const columns = [
     sortable: false,
     headerAlign: "center",
     align: "center",
+    sortable: true,
   },
   {
     field: "governorate",
@@ -42,6 +44,7 @@ const columns = [
     sortable: false,
     headerAlign: "center",
     align: "center",
+    sortable: true,
   },
   {
     field: "city",
@@ -51,6 +54,7 @@ const columns = [
     sortable: false,
     headerAlign: "center",
     align: "center",
+    sortable: true,
   },
   {
     field: "address",
@@ -60,6 +64,7 @@ const columns = [
     sortable: false,
     headerAlign: "center",
     align: "center",
+    sortable: true,
   },
   {
     field: "telephone",
@@ -69,6 +74,7 @@ const columns = [
     sortable: false,
     headerAlign: "center",
     align: "center",
+    sortable: true,
   },
   {
     field: "telephone2",
@@ -78,6 +84,7 @@ const columns = [
     sortable: false,
     headerAlign: "center",
     align: "center",
+    sortable: true,
     renderCell: (params) => {
       return params.value ? (
         params.value
@@ -94,6 +101,7 @@ const columns = [
     sortable: false,
     headerAlign: "center",
     align: "center",
+    sortable: true,
   },
   {
     field: "numberOfItems",
@@ -103,6 +111,7 @@ const columns = [
     sortable: false,
     headerAlign: "center",
     align: "center",
+    sortable: true,
   },
   {
     field: "designation",
@@ -112,6 +121,7 @@ const columns = [
     sortable: false,
     headerAlign: "center",
     align: "center",
+    sortable: true,
   },
   {
     field: "comment",
@@ -121,6 +131,7 @@ const columns = [
     sortable: false,
     headerAlign: "center",
     align: "center",
+    sortable: true,
     renderCell: (params) => {
       return params.value ? (
         params.value
@@ -245,6 +256,30 @@ export default function Dashboard() {
       numberOfExchanges: client?.numberOfExchanges,
     })) || [];
 
+  // Color repeated phone numbers
+  // Step 1: Identify repeated phone numbers
+  const getRepeatedPhoneNumbers = (rows) => {
+    const phoneCount = {};
+    rows.forEach((row) => {
+      const phone = row.telephone;
+      if (phone) {
+        phoneCount[phone] = (phoneCount[phone] || 0) + 1;
+      }
+    });
+    return Object.keys(phoneCount).filter((phone) => phoneCount[phone] > 1);
+  };
+
+  // Step 2: Get repeated phone numbers
+  const repeatedPhones = getRepeatedPhoneNumbers(rows);
+
+  // Step 3: Define getRowClassName function
+  const getRowClassName = (params) => {
+    if (repeatedPhones.includes(params.row.telephone)) {
+      return style.repeatedPhone; // Apply the CSS class for repeated phone numbers
+    }
+    return "";
+  };
+
   // Responsive table
   const [containerWidth, setContainerWidth] = useState(
     window.innerWidth < 600 ? window.innerWidth - 48 : "100%"
@@ -345,10 +380,11 @@ export default function Dashboard() {
           pageSizeOptions={[10, 25, 50, 100]}
           checkboxSelection
           disableMultipleRowSelection
-          disableColumnFilter // Disable filtering
-          disableColumnSort // Disable sorting
-          disableMultipleColumnSorting // Disable multiple column sorting
-          disableColumnMenu // Hide column menu
+          // disableColumnFilter // Disable filtering
+          // disableColumnSort // Disable sorting
+          // disableMultipleColumnSorting // Disable multiple column sorting
+          // disableColumnMenu // Hide column menu
+          getRowClassName={getRowClassName}
           onRowSelectionModelChange={handleSelectionChange}
           style={{ width: "100%", height: "100%", overflowX: "auto" }}
         />

@@ -21,6 +21,8 @@ import NotFound from "./Pages/NotFound/NotFound";
 import Uploaded from "./Pages/Dashboard/Uploaded/Uploaded";
 import AddClient from "./Pages/Dashboard/AddClient/AddClient";
 import EditClient from "./Pages/Dashboard/EditClient/EditClient";
+import Search from "./Pages/Dashboard/Search/Search";
+import Order from "./Pages/Dashboard/Order/Order";
 
 export default function App() {
   const router = createBrowserRouter(
@@ -45,7 +47,9 @@ export default function App() {
             <Route index element={<Dashboard />} />
             <Route path="add-client" element={<AddClient />} />
             <Route path="edit-client/:id" element={<EditClient />} />
+            <Route path="order/:id" element={<Order />} />
             <Route path="uploaded" element={<Uploaded />} />
+            <Route path="search" element={<Search />} />
           </Route>
           {/* End protected route */}
         </Route>

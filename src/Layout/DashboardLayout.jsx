@@ -23,6 +23,7 @@ import logo from "../Assets/Images/logo.png";
 import PauseCircleFilledIcon from "@mui/icons-material/PauseCircleFilled";
 import CloudDoneIcon from "@mui/icons-material/CloudDone";
 import SearchIcon from "@mui/icons-material/Search";
+import SmsIcon from '@mui/icons-material/Sms';
 // React router
 import { Link, useLocation, Outlet } from "react-router-dom";
 // Cookies
@@ -57,6 +58,12 @@ function ResponsiveDrawer(props) {
       title: "Search",
       path: "/dashboard/search",
       icon: <SearchIcon sx={{ color: "#757575" }} />,
+    },
+    {
+      id: 4,
+      title: "SMS",
+      path: "/dashboard/sms",
+      icon: <SmsIcon sx={{ color: "#757575" }} />,
     },
   ];
 

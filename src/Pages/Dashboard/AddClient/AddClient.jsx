@@ -243,6 +243,12 @@ export default function AddClient() {
               <MenuItem value={"Tisane Anti Constipation Z"}>
                 Tisane Anti Constipation Z
               </MenuItem>
+              <MenuItem value={"Tisane Anti Constipation S"}>
+                Tisane Anti Constipation S
+              </MenuItem>
+              <MenuItem value={"Tisane Anti Constipation A"}>
+                Tisane Anti Constipation A
+              </MenuItem>
             </TextField>
           </Grid>
 

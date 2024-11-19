@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\SMSController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\UploadedController;
@@ -52,6 +53,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/all-clients-phone-number', [UploadedController::class, 'getAllPhoneNumbers']);
 
     Route::get('/show-one-order-details/{id}', [UploadedController::class, 'show']);
+
+    Route::post('/send-single-sms', [SMSController::class, 'sendSingleSMS']);
+    Route::post('/send-multiple-sms', [SMSController::class, 'sendMultipleSMS']);
 });
 
 

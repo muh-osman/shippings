@@ -31,4 +31,8 @@ return [
         ],
     ],
 
+    'tunisia_sms' => [
+        'api_key' => env('TUNISIA_SMS_API_KEY'),
+    ],
+
 ];

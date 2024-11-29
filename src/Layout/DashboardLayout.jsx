@@ -23,7 +23,8 @@ import logo from "../Assets/Images/logo.png";
 import PauseCircleFilledIcon from "@mui/icons-material/PauseCircleFilled";
 import CloudDoneIcon from "@mui/icons-material/CloudDone";
 import SearchIcon from "@mui/icons-material/Search";
-import SmsIcon from '@mui/icons-material/Sms';
+import SmsIcon from "@mui/icons-material/Sms";
+import AssessmentIcon from "@mui/icons-material/Assessment";
 // React router
 import { Link, useLocation, Outlet } from "react-router-dom";
 // Cookies
@@ -64,6 +65,12 @@ function ResponsiveDrawer(props) {
       title: "SMS",
       path: "/dashboard/sms",
       icon: <SmsIcon sx={{ color: "#757575" }} />,
+    },
+    {
+      id: 5,
+      title: "Analytics",
+      path: "/dashboard/analytics",
+      icon: <AssessmentIcon sx={{ color: "#757575" }} />,
     },
   ];
 
@@ -168,7 +175,7 @@ function ResponsiveDrawer(props) {
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: "none" } }}
           >
-            <MenuIcon />
+            <MenuIcon sx={{ color: "#fbfbfb" }} />
           </IconButton>
 
           <div className="nav_link" style={{ marginLeft: "auto" }}>

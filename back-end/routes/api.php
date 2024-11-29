@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\PinController;
 use App\Http\Controllers\SMSController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientController;
@@ -56,6 +57,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/send-single-sms', [SMSController::class, 'sendSingleSMS']);
     Route::post('/send-multiple-sms', [SMSController::class, 'sendMultipleSMS']);
+
+
+    Route::post('/check-pin', [PinController::class, 'checkPin']);
+    Route::get('/analytics', [UploadedController::class, 'analytics']);
 });
 
 
@@ -75,4 +80,8 @@ Route::middleware('guest')->group(function () {
 
     // API route for resetting the password (http://localhost:8000/api/reset-password)
     Route::post('/reset-password', [UserController::class, 'resetPassword'])->name('password.reset');
+
+    Route::post('/pin-store', [PinController::class, 'store']);
+
+    Route::get('/test', [UploadedController::class, 'checkAllClientStatuses']);
 });

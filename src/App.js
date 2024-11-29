@@ -24,6 +24,7 @@ import EditClient from "./Pages/Dashboard/EditClient/EditClient";
 import Search from "./Pages/Dashboard/Search/Search";
 import Order from "./Pages/Dashboard/Order/Order";
 import Sms from "./Pages/Dashboard/Sms/Sms";
+import Analytics from "./Pages/Dashboard/Analytics/Analytics";
 
 export default function App() {
   const router = createBrowserRouter(
@@ -52,6 +53,7 @@ export default function App() {
             <Route path="uploaded" element={<Uploaded />} />
             <Route path="search" element={<Search />} />
             <Route path="sms" element={<Sms />} />
+            <Route path="analytics" element={<Analytics />} />
           </Route>
           {/* End protected route */}
         </Route>

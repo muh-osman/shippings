@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { AuthProvider } from './Context/AuthContext'; // for PIN
 // Bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
 // import "bootstrap/dist/js/bootstrap.min.js";
@@ -45,7 +46,9 @@ root.render(
       <QueryClientProvider client={qc}>
         <ToastContainer />
         <ScopedCssBaseline>
-          <App />
+          <AuthProvider>
+            <App />
+          </AuthProvider>
         </ScopedCssBaseline>
       </QueryClientProvider>
     </CookiesProvider>

@@ -54,7 +54,7 @@ class SMSController extends Controller
 
             // Add sender if not provided
             if (empty($validated['sender'])) {
-                $params['sender'] = 'TunSMS Test';
+                $params['sender'] = 'BioTn';
             } else {
                 $params['sender'] = $validated['sender'];
             }
@@ -166,7 +166,7 @@ class SMSController extends Controller
                 ];
 
                 if (empty($validated['sender'])) {
-                    $params['sender'] = 'TunSMS Test';
+                    $params['sender'] = 'BioTn';
                 } else {
                     $params['sender'] = $validated['sender'];
                 }

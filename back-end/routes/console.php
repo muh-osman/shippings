@@ -13,9 +13,9 @@ Artisan::command('client:check-statuses', function () {
 });
 
 
-// Schedule the command to run daily at 01:00 AM UTC -> 02:00 Tunisia time -> 04:00 Damascus time
+// Schedule the command to run daily at 09:30 AM UTC -> 10:30 Tunisia time -> 12:30 Damascus time
 $schedule = app(Schedule::class);
-$schedule->command('client:check-statuses')->dailyAt('01:00');
+$schedule->command('client:check-statuses')->dailyAt('09:30');
 
 // Use this link in hostinger cron job to run the command:
 // domains/adflux.org/public_html/back-end/artisan schedule:run

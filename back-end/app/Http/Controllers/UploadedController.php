@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Uploaded;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
 
@@ -195,7 +194,92 @@ class UploadedController extends Controller
         ]);
     }
 
+    /**
+     * Send SMS to all clients with 'En cours' status
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function notifyEnCoursClients()
+    {
 
+        try {
+
+            // Retrieve all uploaded records with 'En cours' status
+            $enCoursClients = Uploaded::where('status', 'En cours')->get();
+
+            // Initialize an array to hold the results
+            $results = [];
+
+            // Base API URL
+            $baseUrl = "https://app.tunisiesms.tn/Api/Api.aspx";
+
+            foreach ($enCoursClients as $client) {
+                // Skip if no telephone number
+                if (empty($client->telephone)) {
+                    $results[] = [
+                        'id' => $client->id,
+                        'success' => false,
+                        'message' => 'No telephone number',
+                    ];
+                    continue;
+                }
+
+                // Normalize mobile number
+                $mobile = $client->telephone;
+                if (!preg_match('/^216/', $mobile)) {
+                    $mobile = '216' . ltrim($mobile, '0');
+                }
+
+                // API Parameters
+                $params = [
+                    'fct' => 'sms',
+                    'key' => config('services.tunisia_sms.api_key'),
+                    'mobile' => $mobile,
+                    'sms' => 'صباح النور حريفنا الكريم. الكومند متاعك في " بذور الراحة " تخلطلك اليوم .. خلي تلفونك بجنبك .. نشكروك على تفهمك و ثقتك فينا. نهارك طيب',
+                    'sender' => 'BioTn',
+                ];
+
+                // Make API request
+                $response = Http::get($baseUrl, $params);
+
+                // Log the result
+                $results[] = [
+                    'id' => $client->id,
+                    'mobile' => $mobile,
+                    'success' => $response->successful(),
+                    'message' => $response->successful() ? 'SMS sent successfully' : 'Failed to send SMS',
+                    'error' => $response->successful() ? null : $response->body(),
+                ];
+
+                // If SMS is sent successfully, log the phone number
+                if ($response->successful()) {
+                    Log::info('Successful SMS sent', [
+                        'mobile' => $mobile,
+                        'client_id' => $client->id
+                    ]);
+                }
+
+                // Wait for 5 seconds between SMS to avoid rate limiting
+                sleep(5);
+            }
+
+            return response()->json([
+                'total_clients' => count($enCoursClients),
+                'results' => $results,
+            ]);
+        } catch (\Exception $e) {
+            // Log the error
+            Log::error('Error in notifyEnCoursClients', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Error processing En Cours clients: ' . $e->getMessage()
+            ], 500);
+        }
+    }
 
     /**
      * Check the status of all uploaded records with a rate limit of 1 request every 2 seconds.
@@ -257,6 +341,14 @@ class UploadedController extends Controller
             // Wait for 2 seconds before the next request
             sleep(2);
         }
+
+        // Call the notifyEnCoursClients method directly after checkAllClientStatuses
+        if (date('w') != 0) { // Check if today is not Sunday
+            $this->notifyEnCoursClients();
+        } else {
+            Log::info('notifyEnCoursClients was not called because today is Sunday.');
+        }
+
 
         // Return the results as a JSON response
         return response()->json($results);

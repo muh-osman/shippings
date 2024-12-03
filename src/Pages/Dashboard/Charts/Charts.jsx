@@ -83,16 +83,10 @@ export default function Charts() {
   // Chart 4
   const pieChartData = useMemo(() => {
     const totalOrders =
-      (Number(analyticsData?.totalEnCoursCount) || 0) +
       (Number(analyticsData?.totalLivréCount) || 0) +
       (Number(analyticsData?.totalRetourReçu) || 0);
 
     return [
-      {
-        id: 0,
-        value: Number(analyticsData?.totalEnCoursCount || 0),
-        label: "En Cours",
-      },
       {
         id: 1,
         value: Number(analyticsData?.totalLivréCount || 0),

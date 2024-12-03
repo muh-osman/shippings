@@ -15,7 +15,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import { useCheckPinApi } from "../../../API/useCheckPinApi";
 // Context
 import { useAuth } from "../../../Context/AuthContext";
-//
+// Component
 import Charts from "../Charts/Charts";
 
 export default function Analytics() {

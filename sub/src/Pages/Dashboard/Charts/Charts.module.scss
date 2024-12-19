@@ -1,0 +1,31 @@
+.container {
+}
+
+.datePickerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 32px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.progressContainer {
+  position: absolute;
+  top: 64px;
+  left: 0;
+  width: 100%;
+
+  span {
+    height: 2px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .progressContainer {
+    top: 56px;
+  }
+}

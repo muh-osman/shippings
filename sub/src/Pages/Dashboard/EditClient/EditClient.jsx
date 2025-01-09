@@ -299,15 +299,11 @@ export default function EditClient() {
               onChange={handleInputChange}
               disabled={isPending || isFetchCientPending}
             >
-              <MenuItem value={"Tisane Anti Constipation F"}>
-                Tisane Anti Constipation F
-              </MenuItem>
-              <MenuItem value={"Tisane Anti Constipation N"}>
-                Tisane Anti Constipation N
-              </MenuItem>
-              <MenuItem value={"Tisane Anti Constipation Z"}>
-                Tisane Anti Constipation Z
-              </MenuItem>
+              <MenuItem value={"Rhedol F"}>Rhedol F</MenuItem>
+              <MenuItem value={"Rhedol N"}>Rhedol N</MenuItem>
+              <MenuItem value={"Rhedol Z"}>Rhedol Z</MenuItem>
+              <MenuItem value={"Rhedol S"}>Rhedol S</MenuItem>
+              <MenuItem value={"Rhedol A"}>Rhedol A</MenuItem>
             </TextField>
           </Grid>
 

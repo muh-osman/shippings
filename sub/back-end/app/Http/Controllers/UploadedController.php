@@ -137,11 +137,11 @@ class UploadedController extends Controller
 
         // Define the designations to count
         $designations = [
-            "Tisane Anti Constipation F" => 'F',
-            "Tisane Anti Constipation N" => 'N',
-            "Tisane Anti Constipation Z" => 'Z',
-            "Tisane Anti Constipation S" => 'S',
-            "Tisane Anti Constipation A" => 'A'
+            "Rhedol F" => 'F',
+            "Rhedol N" => 'N',
+            "Rhedol Z" => 'Z',
+            "Rhedol S" => 'S',
+            "Rhedol A" => 'A'
         ];
 
         // Initialize an array to hold the counts

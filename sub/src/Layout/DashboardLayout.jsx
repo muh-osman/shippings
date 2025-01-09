@@ -188,16 +188,16 @@ function ResponsiveDrawer(props) {
               disableRipple
               loading={isPending}
               loadingIndicator={
-                <CircularProgress sx={{ color: "#fbfbfb" }} size={24} />
+                <CircularProgress sx={{ color: "#000" }} size={24} />
               } // Customize the loader color here
               sx={{
-                backgroundColor: "#fbfbfb",
-                color: "#4FBA57",
-                border: "1px solid #fbfbfb",
+                backgroundColor: "#000",
+                color: "#fff",
+                border: "1px solid #000",
                 transition: "0.1s",
                 "&:hover": {
-                  backgroundColor: "#4FBA57",
-                  color: "#fbfbfb",
+                  backgroundColor: "#fff",
+                  color: "#000",
                 },
               }}
             >

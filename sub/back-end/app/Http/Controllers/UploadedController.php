@@ -38,7 +38,7 @@ class UploadedController extends Controller
         ];
 
         // Send the request to the status API
-        $response = Http::withToken('dce92a94-c4b9-4655-8716-7265b54cfe93')
+        $response = Http::withToken('cea41945-8739-4910-b0d8-520d44ecbe86')
             ->post('https://www.firstdeliverygroup.com/api/v2/etat', $requestBody);
 
         // Check if the response indicates an error
@@ -84,7 +84,7 @@ class UploadedController extends Controller
         ];
 
         // Send the request to the status API
-        $response = Http::withToken('dce92a94-c4b9-4655-8716-7265b54cfe93')
+        $response = Http::withToken('cea41945-8739-4910-b0d8-520d44ecbe86')
             ->post('https://www.firstdeliverygroup.com/api/v2/etat', $requestBody);
 
         // Check if the response indicates an error
@@ -137,11 +137,11 @@ class UploadedController extends Controller
 
         // Define the designations to count
         $designations = [
-            "Rhedol F" => 'F',
-            "Rhedol N" => 'N',
-            "Rhedol Z" => 'Z',
-            "Rhedol S" => 'S',
-            "Rhedol A" => 'A'
+            "Tisane Anti Constipation F" => 'F',
+            "Tisane Anti Constipation N" => 'N',
+            "Tisane Anti Constipation Z" => 'Z',
+            "Tisane Anti Constipation S" => 'S',
+            "Tisane Anti Constipation A" => 'A',
         ];
 
         // Initialize an array to hold the counts
@@ -199,87 +199,87 @@ class UploadedController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    // public function notifyEnCoursClients()
-    // {
+    public function notifyEnCoursClients()
+    {
 
-    //     try {
+        try {
 
-    //         // Retrieve all uploaded records with 'En cours' status
-    //         $enCoursClients = Uploaded::where('status', 'En cours')->get();
+            // Retrieve all uploaded records with 'En cours' status
+            $enCoursClients = Uploaded::where('status', 'En cours')->get();
 
-    //         // Initialize an array to hold the results
-    //         $results = [];
+            // Initialize an array to hold the results
+            $results = [];
 
-    //         // Base API URL
-    //         $baseUrl = "https://app.tunisiesms.tn/Api/Api.aspx";
+            // Base API URL
+            $baseUrl = "https://app.tunisiesms.tn/Api/Api.aspx";
 
-    //         foreach ($enCoursClients as $client) {
-    //             // Skip if no telephone number
-    //             if (empty($client->telephone)) {
-    //                 $results[] = [
-    //                     'id' => $client->id,
-    //                     'success' => false,
-    //                     'message' => 'No telephone number',
-    //                 ];
-    //                 continue;
-    //             }
+            foreach ($enCoursClients as $client) {
+                // Skip if no telephone number
+                if (empty($client->telephone)) {
+                    $results[] = [
+                        'id' => $client->id,
+                        'success' => false,
+                        'message' => 'No telephone number',
+                    ];
+                    continue;
+                }
 
-    //             // Normalize mobile number
-    //             $mobile = $client->telephone;
-    //             if (!preg_match('/^216/', $mobile)) {
-    //                 $mobile = '216' . ltrim($mobile, '0');
-    //             }
+                // Normalize mobile number
+                $mobile = $client->telephone;
+                if (!preg_match('/^216/', $mobile)) {
+                    $mobile = '216' . ltrim($mobile, '0');
+                }
 
-    //             // API Parameters
-    //             $params = [
-    //                 'fct' => 'sms',
-    //                 'key' => config('services.tunisia_sms.api_key'),
-    //                 'mobile' => $mobile,
-    //                 'sms' => 'صباح النور حريفنا الكريم. الكومند متاعك في " بذور الراحة " تخلطلك اليوم .. خلي تلفونك بجنبك .. نشكروك على تفهمك و ثقتك فينا. نهارك طيب',
-    //                 'sender' => 'BioTn',
-    //             ];
+                // API Parameters
+                $params = [
+                    'fct' => 'sms',
+                    'key' => config('services.tunisia_sms.api_key'),
+                    'mobile' => $mobile,
+                    'sms' => 'صباح النور حريفنا الكريم. الكومند متاعك في " بذور الراحة " تخلطلك اليوم .. خلي تلفونك بجنبك .. نشكروك على تفهمك و ثقتك فينا. نهارك طيب',
+                    'sender' => 'BioTn',
+                ];
 
-    //             // Make API request
-    //             $response = Http::get($baseUrl, $params);
+                // Make API request
+                $response = Http::get($baseUrl, $params);
 
-    //             // Log the result
-    //             $results[] = [
-    //                 'id' => $client->id,
-    //                 'mobile' => $mobile,
-    //                 'success' => $response->successful(),
-    //                 'message' => $response->successful() ? 'SMS sent successfully' : 'Failed to send SMS',
-    //                 'error' => $response->successful() ? null : $response->body(),
-    //             ];
+                // Log the result
+                $results[] = [
+                    'id' => $client->id,
+                    'mobile' => $mobile,
+                    'success' => $response->successful(),
+                    'message' => $response->successful() ? 'SMS sent successfully' : 'Failed to send SMS',
+                    'error' => $response->successful() ? null : $response->body(),
+                ];
 
-    //             // If SMS is sent successfully, log the phone number
-    //             if ($response->successful()) {
-    //                 Log::info('Successful SMS sent', [
-    //                     'mobile' => $mobile,
-    //                     'client_id' => $client->id
-    //                 ]);
-    //             }
+                // If SMS is sent successfully, log the phone number
+                if ($response->successful()) {
+                    Log::info('Successful SMS sent', [
+                        'mobile' => $mobile,
+                        'client_id' => $client->id
+                    ]);
+                }
 
-    //             // Wait for 5 seconds between SMS to avoid rate limiting
-    //             sleep(5);
-    //         }
+                // Wait for 5 seconds between SMS to avoid rate limiting
+                sleep(5);
+            }
 
-    //         return response()->json([
-    //             'total_clients' => count($enCoursClients),
-    //             'results' => $results,
-    //         ]);
-    //     } catch (\Exception $e) {
-    //         // Log the error
-    //         Log::error('Error in notifyEnCoursClients', [
-    //             'message' => $e->getMessage(),
-    //             'trace' => $e->getTraceAsString(),
-    //         ]);
+            return response()->json([
+                'total_clients' => count($enCoursClients),
+                'results' => $results,
+            ]);
+        } catch (\Exception $e) {
+            // Log the error
+            Log::error('Error in notifyEnCoursClients', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
 
-    //         return response()->json([
-    //             'success' => false,
-    //             'message' => 'Error processing En Cours clients: ' . $e->getMessage()
-    //         ], 500);
-    //     }
-    // }
+            return response()->json([
+                'success' => false,
+                'message' => 'Error processing En Cours clients: ' . $e->getMessage()
+            ], 500);
+        }
+    }
 
     /**
      * Check the status of all uploaded records with a rate limit of 1 request every 2 seconds.
@@ -307,7 +307,7 @@ class UploadedController extends Controller
 
 
             // Send the request to the status API
-            $response = Http::withToken('dce92a94-c4b9-4655-8716-7265b54cfe93')
+            $response = Http::withToken('cea41945-8739-4910-b0d8-520d44ecbe86')
                 ->post('https://www.firstdeliverygroup.com/api/v2/etat', $requestBody);
 
             // Check if the response indicates an error
@@ -343,11 +343,11 @@ class UploadedController extends Controller
         }
 
         // Call the notifyEnCoursClients method directly after checkAllClientStatuses
-        // if (date('w') != 0) { // Check if today is not Sunday
-        //     $this->notifyEnCoursClients();
-        // } else {
-        //     Log::info('notifyEnCoursClients was not called because today is Sunday.');
-        // }
+        if (date('w') != 0) { // Check if today is not Sunday
+            $this->notifyEnCoursClients();
+        } else {
+            Log::info('notifyEnCoursClients was not called because today is Sunday.');
+        }
 
 
         // Return the results as a JSON response

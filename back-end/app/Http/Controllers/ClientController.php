@@ -143,7 +143,12 @@ class ClientController extends Controller
         $responses = [];
 
         // Send each chunk to the API
-        foreach ($chunks as $chunk) {
+        foreach ($chunks as $index => $chunk) {
+            // Add delay for all chunks except the first one
+            if ($index > 0) {
+                sleep(12); // 12-second delay
+            }
+
             $response = Http::withToken('dce92a94-c4b9-4655-8716-7265b54cfe93')
                 ->post('https://www.firstdeliverygroup.com/api/v2/bulk-create', $chunk);
 
